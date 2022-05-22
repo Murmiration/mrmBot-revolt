@@ -18,7 +18,6 @@ import { log, error } from "./utils/logger.js";
 import { load } from "./utils/handler.js";
 import database from "./utils/database.js";
 
-
 database.upgrade().then(result => {
   if (result === 1) return process.exit(1);
 });
