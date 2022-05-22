@@ -12,7 +12,7 @@ class ExecCommand extends Command {
     const code = this.type === "classic" ? this.args.join(" ") : this.options.cmd;
     try {
       const execed = await exec(code);
-      if (execed.stderr) return `\`ERROR\` \`\`\`\n${await clean(execed.stderr)}\n\`\`\``;
+      if (execed.stderr) return `\`\`\`\n${await clean(execed.stderr)}\n\`\`\``;
       const cleaned = await clean(execed.stdout);
       const sendString = `\`\`\`\n${cleaned}\n\`\`\``;
       if (sendString.length >= 2000) {
@@ -25,7 +25,7 @@ class ExecCommand extends Command {
         return sendString;
       }
     } catch (err) {
-      return `\`ERROR\` \`\`\`\n${await clean(err)}\n\`\`\``;
+      return `\`\`\`\n${await clean(err)}\n\`\`\``;
     }
   }
 
