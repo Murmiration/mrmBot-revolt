@@ -5,7 +5,7 @@ import { config } from "dotenv";
 config({ path: resolve(dirname(fileURLToPath(import.meta.url)), ".env") });
 
 const { messages } = JSON.parse(readFileSync(new URL("./messages.json", import.meta.url)));
-// import { random } from "./utils/misc.js";
+import { random } from "./utils/misc.js";
 
 // path stuff
 import { readdir } from "fs/promises";
@@ -59,8 +59,13 @@ client.on("message", async (message) => {
 });
 log("info", "Finished loading events.");
 
-// client.on("ready", async () => {
-//   await client.user.update({status: {text: `${random(messages)} | <help`}});
-// });
+client.on("ready", async () => {
+
+  // THE GAMER CODE RETURNS (status changer)
+  (async function activityChanger() {
+    await client.api.patch("/users/@me", {status: {text: `${random(messages)} | <help`, presence: "Busy"}});
+    setTimeout(activityChanger.bind(this), 900000);
+  }).bind(this)();
+});
 
 client.loginBot(process.env.TOKEN);
