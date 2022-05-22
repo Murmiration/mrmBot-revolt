@@ -1,0 +1,12 @@
+{
+  "lava": [
+    { "id": "1", "host": "localhost", "port": 2333, "password": "youshallnotpass", "local": true }
+  ],
+  "image": [
+    { "server": "localhost", "auth": "verycoolpass100", "tls": false }
+  ],
+  "searx": [
+    "https://searx.tiekoetter.com",
+    "https://search.ononoki.org"
+  ]
+}
