@@ -31,7 +31,7 @@ export default async (client, message) => {
   //   }
   // }
 
-  let prefix = "<";
+  let prefix = process.env.PREFIX;
   let isMention = false;
 
   // ignore other stuff
