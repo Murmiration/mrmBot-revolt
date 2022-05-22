@@ -110,7 +110,12 @@ const checkImages = async (message, extraReturnTypes, video, sticker) => {
   } else if (message.content) {
     if (validUrl.isUri(message.content)) {
       let url = message.content;
-      type = await getImage(url, url, false);
+      const host = new URL(url).host
+      if (tenorURLs.includes(host) || imgurURLs.includes(host)) {
+        type = await getImage(url, url, false, extraReturnTypes, true);
+      } else {
+        type = await getImage(url, url, false);
+      }
     }
   }
   // console.log(typeof(message.attachments[0]))
