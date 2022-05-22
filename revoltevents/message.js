@@ -13,7 +13,7 @@ export default async (client, message) => {
   if (message.author.bot) return;
 
   // don't run command if bot can't send messages
-  // if (message.channel.guild && !message.channel.permissionsOf(client.user.id).has("sendMessages")) return;
+  // if (message.channel.server !== null && !message.channel.permissionsOf(client.user.id).has("sendMessages")) return;
 
   // let prefixCandidate;
   // let guildDB;
@@ -131,6 +131,8 @@ export default async (client, message) => {
       await message.reply(Object.assign({
         content: "The request timed out before I could download that image. Try uploading your image somewhere else or reducing its size."
       }, reference));
+    } else if (error.toString().includes("Error: Request failed with status code 403")) {
+      _error(`No send message permissions for command ${message.content}: ${error.toString()}`)
     } else {
       _error(`Error occurred with command message ${message.content}: ${error.toString()}`);
       _error(error.stack)
