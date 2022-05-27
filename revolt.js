@@ -63,7 +63,7 @@ client.on("ready", async () => {
 
   // THE GAMER CODE RETURNS (status changer)
   (async function activityChanger() {
-    await client.api.patch("/users/@me", {status: {text: `${random(messages)} | <help`, presence: "Busy"}});
+    await client.api.patch("/users/@me", {status: {text: `${random(messages)} | <help`, presence: "Busy"}, profile: {content: "[mrmBot](https://github.com/Murmiration/mrmBot-revolt) is my personal fork of the popular discord bot esmBot, but also modified to work on Revolt instead!\n\nIt's main purpose is image manipulation (think adding impact font to images, and stuff like that), but it will have a few other utility functions as well."}});
     setTimeout(activityChanger.bind(this), 900000);
   }).bind(this)();
 });
